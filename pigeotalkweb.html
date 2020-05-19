@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Pigeotalk</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <!--Import CSS-->
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"  media="screen,projection"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet" />
+
+</head>
+<body>
+    <span class="top"></span>
+
+    <div class="container-fluid chatbox shadow-lg rounded">
+
+        <div class="row h-100">
+            
+            <div class="col-md-3 pr-0 d-md-block d-none">
+
+                <!--ConversationPanel-->
+                <div id="ConversationPanel" class="card h-100">
+                    <!--Profile-->
+                    <div class="card-header">
+                        <div class="row">
+                            <!--ProfilePicture-->
+                            <div class="col-9 col-md-9 col-sm-9">
+                                <img src="picture/14.png" class="user-profile-pic rounded-circle" />
+                            </div>
+                            <!--/ProfilePicture-->
+
+                            <!--Settings Dropdown-->
+                            <div class="col-3 col-md-3 col-sm-3">
+                                <div>
+                                    <span  onclick="displayContactList()">
+                                        <i class="fas fa-ellipsis-v icon" style="cursor: pointer; float: right;"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <!--/SettingsDropdown-->
+                        </div>
+                    </div>
+                    <!--/Profile-->
+                    <!--ConversationList-->
+                    <ul id="ConversationList" class="list-group">
+                        <!--SearchBar-->
+                        <li class="list-group-item card-search">
+                            <input type="text" placeholder="Search" class="form-control input-search" />
+                        </li>
+                        <!--/SearchBar-->
+
+                        <!--Conversations-->
+                        <li class="list-group-item list-group-item-action" onclick="displayChat(1)">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <img src="picture/14.png" class="contact-profile-pic rounded-circle"/>
+                                </div>
+                                <div class="col-md-10" style="cursor: pointer;">
+                                    <div class="contact-name">Aniue Green</div>
+                                    <div class="contact-last-massage">Hey,There!</div>
+                                </div>
+                            </div>
+                        </li>
+                        <!--/Conversations-->
+                    </ul>
+                    <!--/ConversationList-->
+                </div>
+                <!--/ConverisationPanel-->
+
+
+                <!--Contact Panel-->
+                <div id="ContactPanel" class="card h-100"  style="display: none;">
+                    <!--Profile-->
+                    <div class="card-header">
+                        <div class="row">
+                            <span style="padding-left:15px;float:left;"  onclick="displayConversationList()">
+                                <i class="fas fa-arrow-left" style="size:15px ;cursor: pointer;"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <!--/Profile-->
+
+                    
+                    <!--ContactList-->
+                    <ul id="ContactList" class="list-group">
+                        <!--SearchBar-->
+                        <li class="list-group-item card-search">
+                            <input type="text" placeholder="Search" class="form-control input-search" />
+                        </li>
+                        <!--/SearchBar-->
+
+                        <!--Contacts-->
+                        
+                        <!--/Contacts-->
+                    </ul>
+                    <!--/ContactList-->          
+                </div>
+            </div>    
+
+
+
+
+            
+            <div class="col-md-9 pl-0">
+                <!--ChatPanel-->
+                <div id="conversationPanel" class="card" style="display: none;">
+
+                    <!--ChatHeader-->
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-1"> 
+                                <img src="picture/14.png" class="contact-profile-pic"/> 
+                            </div>
+                            <div class="col-md-6">
+                                <div class="contact-name">Aniue Green</div>
+                            </div>
+                            <div class="col-md-4">
+                                <i class="fas fa-search"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!--ChatBody-->
+                    <div id="conversationBody" class="card-body">
+                        <!--Recieved-->
+                            <div class="row">
+                                <div class="col-7 col-sm-7 col-md-7">
+                                    <p class="chat-recieve">This is a test message
+                                        <span class="chat-time">12:22 AM <i class="fas fa-check"></i></span>
+                                    </p>
+                                </div>
+                            </div>
+                        <!--/Recieved-->
+
+                        <!--Sent-->
+                            <div class="row justify-content-end">
+                                <div class="col-7 col-sm-7 col-md-7">
+                                    <p class="chat-sent">This is a test message
+                                        <span class="chat-time">12:22 AM <i class="fas fa-check"></i></span> 
+                                    </p>
+                                </div>
+                            </div>
+                        <!--/Sent-->
+                    </div>
+                    <!--/ChatBody-->
+
+                    <!--ChatFooter-->
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-md-1 text-center">  <i class="far fa-grin fa-2x"></i>    </div>
+                            <div class="col-md-10">
+                                <input id="userMessageInput" onclick="onKeyDown()" type="text" class="form-control input-search"/>
+                            </div>
+                            <div class="col-md-1">  <i class="fas fa-microphone fa-2x"></i></div>
+                        </div>
+                    </div>
+                    <!--/ChatFooter-->
+                </div>
+                <!--/ChatPanel-->
+
+
+                <!--Display when site opened-->
+                <div id="emptyConversation" class="text-center">
+                    <i class="fas fa-comments start-icon"></i>
+                    <h3>Select a contact from the list and start chating</h3>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+    <script src="https://kit.fontawesome.com/f2f47dfeed.js" crossorigin="anonymous"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-storage.js"></script>
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-analytics.js"></script>
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-firestore.js"></script>
+    
+
+    <script src="js/firebase.js"></script>
+   
+    <script src="js/chat.js"></script>
+</body>
+</html>

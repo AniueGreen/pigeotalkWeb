@@ -1,0 +1,118 @@
+body,html{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+body{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background-image: linear-gradient(250deg,#dddbd1,#d2dbdc);
+}
+
+.top{
+    height: 50%;
+    width: 100%;
+    background-color: #3F51B5;
+    position: fixed;
+    z-index: -1;
+}
+
+/*Main Div*/
+.chatbox{
+    height: calc(100% - 40px);
+    width: 80%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #FFFFFF;
+    padding: 0px;
+}
+
+
+/*Profile Pictures*/
+.user-profile-pic{
+    height: 40px;
+    width: 40px;
+}
+
+.contact-profile-pic{
+    height: 40px;
+    width: 40px;
+}
+
+
+/*SearchBar*/
+.input-search{
+    border-radius: 1rem;
+}
+
+.card-search{
+    background-color: #F8F8F8;
+}
+
+.contact-name{
+    font-weight: 300;
+}
+
+.contact-last-massage{
+    font-size: 12px;
+    line-height: 15px;
+    max-height: 15px;
+}
+
+.start-icon{
+    margin-top: 30px;
+    font-size: 200px;
+}
+
+
+
+/*--Chat--*/
+.chat-recieve{
+    background-color: whitesmoke;
+    border-radius: 10px;
+    display: inline-block;
+    padding: 10px 15px;
+}
+
+.chat-sent{
+    background-color: lightgreen;
+    border-radius: 10px;
+    padding: 10px 15px;
+    float: right;
+}
+
+.chat-time{
+    font-size: 11px;
+    color: gray;
+    /*margin-top: 2%;
+    margin-left: 1%;*/
+}
+/*--Chat--*/
+
+.card{
+    height: 94vh;
+}
+
+#conversationBody{
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.login-body{
+    height: 40%;
+    width: 30%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #FFFFFF;
+    padding: 0px;
+}
+
+.login-input-phone{
+    border-radius: 1rem;
+}
+
+.dropdown-toggle::before{
+    display:none !important;
+}
