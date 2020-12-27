@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Pigeotalk</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="shortcut icon" type="image/x-icon" href="icons/subicon.ico"/>
+    <!--Import CSS-->
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"  media="screen,projection"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/mainpageScss.css" rel="stylesheet" />
+
+</head>
+<body>
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+        <!-- Latest compiled JavaScript -->
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+        <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-storage.js"></script>
+        <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+        <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-analytics.js"></script>
+        <!-- Add Firebase products that you want to use -->
+        <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-firestore.js"></script>
+        <script src="js/firebase.js"></script>
+        <script src="js/moment.js"></script>
+        <script src="js/mainpagejs.js"></script>
+
+    <span class="top"></span>
+
+    <div class="container">
+        <div class="row no-gutters h-100">
+            <!--ChatListPanel-->
+            <div id="chatListPanel" class="col-md-4 border-right">
+                <div id="profileTray" class="profile-tray">
+                    <img id="profileTrayImage" class="profile-image" alt="Profile Image"></img>
+                    <span class="settings-tray float-right">
+                        <i class="material-icons" onclick="displayContactList()">message</i>
+                        <i class="material-icons" onclick="displayProfileInformation()">menu</i>
+                    </span>
+                </div>
+
+                <div class="search-box">
+                    <div class="input-wrapper">
+                        <i class="material-icons">search</i>
+                        <input type="text" placeholder="Search">
+                    </div>
+                </div>
+                
+                <div id="chatList">
+                   
+                </div>
+            </div>
+
+            <!--ProfileInformationPanel-->
+            <div id="profileInformationPanel" class="col-md-4 border-right" style="display:none">
+                
+                <div id="profileInformationTray" class="profile-Information-Tray">
+                    <span onclick="displayChatList('profileInformationPanel')">
+                        <i class="material-icons">keyboard_backspace</i>
+                    </span>
+                    <h5 class="float-left">Profile</h5>
+                </div>
+                
+                <div class="profile-information-picture">
+                
+                    <a onclick="selectProfilePicture()">
+                        <label>
+                            <img id="userProfilePicture" class="user-profile-picture rounded-circle" style="cursor: pointer;">  </img>
+                        </label>
+                        <input id="getImage" accept="image/*" onchange="uploadProfilePicture(this)"  type="file" style="display:none;" />
+                    </a>
+                </div>
+                <div class="row profile-information">
+                            <label style="margin-left: 10px;">User Name</label>
+                            <i id="editName" onclick="editName()" class="material-icons" style="size: 5px ;margin-left: 20px;">edit</i>
+                            <i id="cancelEditName" onclick="cancelEditName()" class="material-icons" style="display: none;">close</i>
+                            <i id="acceptEditName" onclick="acceptEditName()" class="material-icons" style="display: none;">done</i>
+                            <input id="userProfileName" type="text"/>
+
+                            <label style="margin-left: 10px;">About</label>
+                            <i id="cancelEditAbout" onclick="cancelEditAbout()" class="material-icons" style="display: none;">close</i>
+                            <i id="acceptEditAbout" onclick="acceptEditAbout()" class="material-icons" style="display: none;">done</i>
+                            <i id="editAbout" onclick="editAbout()" class="material-icons" style="cursor: pointer;size: 5px ;margin-left: 20px;">edit</i>
+                            <input id="userProfileAbout" type="text">
+  
+                </div>
+            </div>
+
+            <!--ContactListPanel-->
+            <div id="contactListPanel" class="col-md-4 border-right" style="display:none">
+                
+                <div id="contactTray" class="contact-Tray">
+                    <span onclick="displayChatList('contactListPanel')">
+                        <i class="material-icons">keyboard_backspace</i>
+                    </span>
+                    <h5 class="float-left">Contacts</h5>
+                </div>
+                
+                <div id="contactList">
+
+                </div>
+            </div>
+            
+
+            <div id="mainChatPanel" class="col-md-8  card chat-panel" style="display: none; max-height: inherit;">
+
+                        <div class="chat-profile-tray">
+                            <div class="chat-profile no-gutters chat-profile--grey">
+                                <img id="chat-tray-contact-picture" alt="Chat Profile Image" class="profile-image">
+                                <div class="chat-contact-name">
+                                    <h6 id="contactName"></h6>
+                                    <p id="contactPresence"></p>
+                                </div>
+                                <span class="float-right">
+                                    <i class="material-icons" style="cursor: pointer;" onclick="sendImage()">attachment
+                                        <input id="uploadImage" accept="image/*" onchange="uploadImage(this)"  type="file" style="display:none;" />
+                                    </i>
+                                </span>
+                            </div>
+                        </div>
+                    
+
+                    <div id="chatBody" class="card-body">
+                    </div>
+
+
+                        <div class="row">
+                                <div class="col-12">
+                                    <div class="chat-input-tray">
+                                        <i class="material-icons">sentiment_very_satisfied</i>
+                                        <input type="text" id="userMessageInput" onclick="onKeyDown()">
+                                        <i class="material-icons" style="cursor: pointer;" onclick="sendMessage()">send</i>
+                                    </div>
+                                </div>
+                        </div>
+                
+            </div>
+
+            <div id="emptyPanel" style="align-content: center; justify-content: center;" class="col-md-8 empty-panel">
+                <div style="padding: 250px;">
+                    <i class="material-icons">chat_bubble</i>
+                    <h4>Select a contact from the list and start chating</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>
